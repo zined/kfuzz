@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PARALLEL=$(( $(grep -c processor /proc/cpuinfo) * 2))
+
+cd /trinity
+
+./configure.sh
+CC=gcc CFLAGS=-static make -j16
+cp trinity /initrd/init

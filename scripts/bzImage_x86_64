@@ -1,0 +1,17 @@
+#!/bin/bash
+
+PARALLEL=$(( $(grep -c processor /proc/cpuinfo) * 2))
+
+cd /linux
+
+make x86_64_defconfig
+
+sed -i 's/# CONFIG_KASAN is not set/CONFIG_KASAN=y/' .config
+
+echo '# CONFIG_TEST_KASAN is not set' >> .config
+echo '# CONFIG_KASAN_OUTLINE is not set' >> .config
+echo 'CONFIG_KASAN_INLINE=y' >> .config
+
+make -j$PARALLEL bzImage
+
+cp -v arch/x86/boot/bzImage /kernel/bzImage
