@@ -66,4 +66,10 @@ linux kernel fuzzing toolchain based on docker/qemu/kvm/trinity. don't use it. i
 
 ### spin up your kvm
 
+## braindump
 
+ * keep kernel builds, incremental, minor config changes
+ * implement mechanism to pipe and evaluate KASAN through kmsg
+ * random kernel configs?
+ * kvm hardware configs
+ 
